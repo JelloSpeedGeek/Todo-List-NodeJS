@@ -22,7 +22,7 @@ $(document).ready(function (e) {
                 }
                 $.ajax({
                     type: 'POST',
-                    url: 'http://localhost:8080/new_task',
+                    url: 'https://morning-sands-12162.herokuapp.com/new_task',
                     data: JSON.stringify({
                         task: taskName
                     }),
@@ -54,7 +54,7 @@ $(document).ready(function (e) {
         var doneTaskID = $(this).siblings('.task').attr('id');
         $.ajax({
             type: 'PUT',
-            url: 'http://localhost:8080/done',
+            url: 'https://morning-sands-12162.herokuapp.com/done',
             data: JSON.stringify({
                 //task: $taskItem
                 taskNum: doneTaskID
@@ -97,7 +97,7 @@ $(document).ready(function (e) {
                 var sibling = $(taskDel).siblings('.task').attr('id');
                 $.ajax({
                     type: 'DELETE',
-                    url: 'http://localhost:8080/delete_task',
+                    url: 'https://morning-sands-12162.herokuapp.com/delete_task',
                     /*data: JSON.stringify({
                         id: sibling
                     }),*/
@@ -131,7 +131,7 @@ $(document).ready(function (e) {
                 var task = $(this).data('taskName');
                 $.ajax({
                     type: 'PUT',
-                    url: 'http://localhost:8080/edit_task',
+                    url: 'https://morning-sands-12162.herokuapp.com/edit_task',
                     data: JSON.stringify({
                         editedTasks: newTask,
                         taskId: taskID
@@ -153,7 +153,7 @@ $(document).ready(function (e) {
     function loadTasks(){
         $.ajax({
             type: 'GET',
-            url: 'http://localhost:8080/get_task',
+            url: 'https://morning-sands-12162.herokuapp.com/get_task',
             contentType: "json",
             success: function (data) {
                 for (var i = 0; i < data.length; i++){
@@ -180,7 +180,7 @@ $(document).ready(function (e) {
             var temp = jQuery('span.task', todoTasks[i]).attr('id');
             $.ajax({
                 type: 'PUT',
-                url: 'http://localhost:8080/todo_task_update_false',
+                url: 'https://morning-sands-12162.herokuapp.com/todo_task_update_false',
                 data: JSON.stringify({
                     taskIdFalse: temp
                 }),
@@ -197,7 +197,7 @@ $(document).ready(function (e) {
             var tempT = jQuery('span.task', completedTasks[i]).attr('id');
             $.ajax({
                 type: 'PUT',
-                url: 'http://localhost:8080/todo_task_update_true',
+                url: 'https://morning-sands-12162.herokuapp.com/todo_task_update_true',
                 data: JSON.stringify({
                     taskIdTrue: tempT
                 }),
