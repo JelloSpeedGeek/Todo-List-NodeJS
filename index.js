@@ -78,6 +78,7 @@ app.put('/edit_task', function (request, response) {
 });
 
 app.delete('/delete_task', function (request, response) {
+
     var idNumber = request.body.id;
     var queryString = "delete from todo where id = '" + idNumber + "'";
     var query = client.query(queryString);
