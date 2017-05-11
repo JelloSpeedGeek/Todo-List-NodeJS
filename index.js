@@ -7,6 +7,7 @@ var connectionString = process.env.DATABASE_URL||"postgres://mirandange:30032307
 var client = new pg.Client(connectionString);
 client.connect();
 
+
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 
