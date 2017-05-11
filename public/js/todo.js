@@ -98,9 +98,9 @@ $(document).ready(function (e) {
                 $.ajax({
                     type: 'DELETE',
                     url: 'http://localhost:8080/delete_task',
-                    data: JSON.stringify({
+                    /*data: JSON.stringify({
                         id: sibling
-                    }),
+                    }),*/
                     contentType: "application/json",
                     success: function () {
                         $(taskDel).parent('li').effect('puff', function() { $(taskDel).remove(); });
