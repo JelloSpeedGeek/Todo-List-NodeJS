@@ -22,10 +22,7 @@ $(document).ready(function (e) {
                 }
                 $.ajax({
                     type: 'POST',
-                    url: 'https://morning-sands-12162.herokuapp.com/new_task',
-                    data: JSON.stringify({
-                        task: taskName
-                    }),
+                    url: 'https://morning-sands-12162.herokuapp.com/new_task/'+taskName,
                     contentType: "application/json",
                     success: function (id) {
                         var taskHTML = '<li><span class="done">%</span>';
@@ -54,11 +51,7 @@ $(document).ready(function (e) {
         var doneTaskID = $(this).siblings('.task').attr('id');
         $.ajax({
             type: 'PUT',
-            url: 'https://morning-sands-12162.herokuapp.com/done',
-            data: JSON.stringify({
-                //task: $taskItem
-                taskNum: doneTaskID
-            }),
+            url: 'https://morning-sands-12162.herokuapp.com/done/'+doneTaskID,
             contentType: "application/json",
             success: function () {
                 $taskItem.slideUp(250, function() {
@@ -97,10 +90,7 @@ $(document).ready(function (e) {
                 var sibling = $(taskDel).siblings('.task').attr('id');
                 $.ajax({
                     type: 'DELETE',
-                    url: 'https://morning-sands-12162.herokuapp.com/delete_task',
-                    data: JSON.stringify({
-                        id: sibling
-                    }),
+                    url: 'https://morning-sands-12162.herokuapp.com/delete_task/'+sibling,
                     contentType: "application/json",
                     success: function () {
                         $(taskDel).parent('li').effect('puff', function() { $(taskDel).remove(); });
@@ -131,11 +121,7 @@ $(document).ready(function (e) {
                 var task = $(this).data('taskName');
                 $.ajax({
                     type: 'PUT',
-                    url: 'https://morning-sands-12162.herokuapp.com/edit_task',
-                    data: JSON.stringify({
-                        editedTasks: newTask,
-                        taskId: taskID
-                    }),
+                    url: 'https://morning-sands-12162.herokuapp.com/edit_task/'+newTask+'/'+taskID,
                     contentType: "application/json",
                     success: function () {
                         //sets task to be $('#editTaskName').val()
@@ -180,12 +166,8 @@ $(document).ready(function (e) {
             var temp = jQuery('span.task', todoTasks[i]).attr('id');
             $.ajax({
                 type: 'PUT',
-                url: 'https://morning-sands-12162.herokuapp.com/todo_task_update_false',
-                data: JSON.stringify({
-                    taskIdFalse: temp
-                }),
+                url: 'https://morning-sands-12162.herokuapp.com/todo_task_update_false/'+temp,
                 contentType: "application/json",
-
             })
         }
     }
@@ -197,10 +179,7 @@ $(document).ready(function (e) {
             var tempT = jQuery('span.task', completedTasks[i]).attr('id');
             $.ajax({
                 type: 'PUT',
-                url: 'https://morning-sands-12162.herokuapp.com/todo_task_update_true',
-                data: JSON.stringify({
-                    taskIdTrue: tempT
-                }),
+                url: 'https://morning-sands-12162.herokuapp.com/todo_task_update_true/'+tempT,
                 contentType: "application/json",
             })
         }

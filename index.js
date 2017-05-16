@@ -39,21 +39,21 @@ app.get('/test_database', function (request, response) {
     });
 });
 
-app.post('/new_task', function (request, response) {
-    var taskName = request.body.task;
+app.post('/new_task/:task', function (request, response) {
+    var taskName = request.params.task;
     var queryString = "insert into todo (item,done) values ('" + taskName + "',false)";
     var query = client.query(queryString);
     query.on('end', function () {
         //pass in response into getID because it is a call back function
         getID(response);
     })
-    query.on('error', function (err) {
+    query.on('error', function(err) {
         console.log(err);
     });
 });
 
-app.put('/done', function (request, response) {
-    var taskNumber = request.body.taskNum;
+app.put('/done/:taskNum', function (request, response) {
+    var taskNumber = request.params.taskNum;
     var queryString = "update todo set done = 'true' where id = '" + taskNumber + "'";
     var query = client.query(queryString);
     query.on('end', function () {
@@ -64,9 +64,9 @@ app.put('/done', function (request, response) {
     });
 });
 
-app.put('/edit_task', function (request, response) {
-    var taskName = request.body.editedTasks;
-    var taskID = request.body.taskId;
+app.put('/edit_task/:editedTasks/:taskId', function (request, response) {
+    var taskName = request.params.editedTasks;
+    var taskID = request.params.taskId;
     var queryString = "update todo set item = '" + taskName + "' where id = '" + taskID + "'";
     var query = client.query(queryString);
     query.on('end', function () {
@@ -77,9 +77,8 @@ app.put('/edit_task', function (request, response) {
     });
 });
 
-app.delete('/delete_task', function (request, response) {
-
-    var idNumber = request.body.id;
+app.delete('/delete_task/:id', function (request, response) {
+    var idNumber = request.params.id;
     var queryString = "delete from todo where id = '" + idNumber + "'";
     var query = client.query(queryString);
     query.on('end', function () {
@@ -106,8 +105,8 @@ app.get('/get_task', function (request, response) {
     });
 });
 
-app.put('/todo_task_update_false', function (request, response) {
-    var taskNum = request.body.taskIdFalse;
+app.put('/todo_task_update_false/:taskIdFalse', function (request, response) {
+    var taskNum = request.params.taskIdFalse;
     var queryString = "update todo set done = 'false' where id = '" + taskNum + "'";
     var query = client.query(queryString);
     query.on('end', function () {
@@ -118,8 +117,8 @@ app.put('/todo_task_update_false', function (request, response) {
     });
 });
 
-app.put('/todo_task_update_true', function (request, response) {
-    var taskNumber = request.body.taskIdTrue;
+app.put('/todo_task_update_true/:taskIdTrue', function (request, response) {
+    var taskNumber = request.params.taskIdTrue;
     var queryString = "update todo set done = 'true' where id = '" + taskNumber + "'";
     var query = client.query(queryString);
     query.on('end', function () {
